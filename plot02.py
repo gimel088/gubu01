@@ -42,6 +42,9 @@ class Plot02App:
     def on_plot_clicked(self):
         v1 = self.tk_ent_1.get()
         print('ent_1=', v1)
+        echo_label = self.builder.get_variable('ent_1')
+        echo_label.set(v1)
+
         self.tk_label_1.config(text="config text")
         e2 = self.builder.get_object('ent_2')
         e2.config(text=v1)
