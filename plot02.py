@@ -1,4 +1,4 @@
-import os
+import os, math
 import tkinter as tk
 
 from matplotlib.backends.backend_tkagg import (
@@ -9,6 +9,13 @@ from matplotlib.figure import Figure
 
 import pygubu
 
+def sind(a):
+    return math.sin( float(a) * math.pi / 180.0 )
+
+def degrng():
+    d = range(0,359,10)
+    g = [sind(i) for i in d]
+    return ([i for i in d],g)
 
 class Plot02App:
     def __init__(self):
@@ -50,7 +57,9 @@ class Plot02App:
         e2.config(text=v1)
         self.mainwindow.update()
         a = self.figure.add_subplot(111)
-        a.plot([1,2,3,4,5,6,7,8],[5,6,1,3,8,9,3,5])
+        #a.plot([1,2,3,4,5,6,7,8],[5,6,1,3,8,9,3,5])
+        b = degrng()
+        a.plot(b[0], b[1])
         self.canvas.draw()
 
     def on_quit_clicked(self):
@@ -58,6 +67,9 @@ class Plot02App:
          #self.mainwindow.quit()
 
 def main():
-    #if __name__ == '__main__':
     app = Plot02App()
     app.run()
+
+if __name__ == '__main__':
+    main()
+
